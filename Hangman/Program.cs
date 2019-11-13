@@ -14,6 +14,9 @@ namespace Hangman
         // STEP 5 - Previous guessed letters
         static string previousGuessedLetters = "";
 
+        // STEP 7 - Number of wrong tries
+        static int numberOfWrongTriesLeft = 5;
+
         // STEP 1 - Welcome text to user
         static void WelcomeText()
         {
@@ -83,7 +86,10 @@ namespace Hangman
             }
             else if (!previousGuessedLetters.Contains(letter))
             {
+                // STEP 7
+                numberOfWrongTriesLeft--;
                 Console.WriteLine("Sorry, wrong guess. Getting closer to the gallows.");
+                Console.WriteLine($"You have {numberOfWrongTriesLeft} tries left");
 
                 // Add the letter to the list of guessed letters
                 previousGuessedLetters += letter + " ";
