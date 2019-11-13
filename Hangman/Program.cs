@@ -46,9 +46,21 @@ namespace Hangman
         // returns a letter of type char
         static char RequestLetterFromUser()
         {
-            Console.Write("Please enter your guess (single letter): ");
+            // Keep asking for valid lowercased letter
+            char letter = ' ';
+            do
+            {
+                Console.Write("Please enter your guess (single letter): ");
 
-            char letter = Convert.ToChar(Console.ReadLine());
+                // Long version:
+                string input = Console.ReadLine();      // Read letter
+                input = input.ToLower();                // Lowercase
+                letter = Convert.ToChar(input);         // String to single char
+
+                // Short version:
+                // letter = Convert.ToChar(Console.ReadLine().ToLower());
+            } while (!(letter >= 'a' && letter <= 'z')) ;
+            
             //char letter = Console.ReadLine()[0];      // Alternative
 
             return letter;
