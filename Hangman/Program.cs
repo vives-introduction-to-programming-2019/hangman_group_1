@@ -11,6 +11,9 @@ namespace Hangman
         // STEP 3 - Revealed secret (includes correct guessed letters)
         static string revealedSecret = "";
 
+        // STEP 5 - Previous guessed letters
+        static string previousGuessedLetters = "";
+
         // STEP 1 - Welcome text to user
         static void WelcomeText()
         {
@@ -60,8 +63,11 @@ namespace Hangman
                 // Short version:
                 // letter = Convert.ToChar(Console.ReadLine().ToLower());
             } while (!(letter >= 'a' && letter <= 'z')) ;
-            
+
             //char letter = Console.ReadLine()[0];      // Alternative
+
+            // Add the letter to the list of guessed letters
+            previousGuessedLetters += letter + " ";
 
             return letter;
         }
@@ -74,6 +80,9 @@ namespace Hangman
 
             // Print revealed secret
             Console.WriteLine($"Current progress: {revealedSecret.Trim()}");
+
+            // STEP 5 - Show previous guesses
+            Console.WriteLine($"Previous guessed letters: {previousGuessedLetters.Trim()}");
 
             // STEP 4 - Get a guess from the user and save in variable
             char userGuess = RequestLetterFromUser();
