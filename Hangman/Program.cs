@@ -42,6 +42,18 @@ namespace Hangman
             }
         }
 
+        // STEP 4 - Request a letter from the user
+        // returns a letter of type char
+        static char RequestLetterFromUser()
+        {
+            Console.Write("Please enter your guess (single letter): ");
+
+            char letter = Convert.ToChar(Console.ReadLine());
+            //char letter = Console.ReadLine()[0];      // Alternative
+
+            return letter;
+        }
+
         static void Main(string[] args)
         {
             WelcomeText();      // STEP 1
@@ -50,6 +62,10 @@ namespace Hangman
 
             // Print revealed secret
             Console.WriteLine($"Current progress: {revealedSecret.Trim()}");
+
+            // STEP 4 - Get a guess from the user and save in variable
+            char userGuess = RequestLetterFromUser();
+            Console.WriteLine($"Your guess: {userGuess}");
         }
     }
 }
