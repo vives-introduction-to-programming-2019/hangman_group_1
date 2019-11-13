@@ -25,7 +25,7 @@ namespace Hangman
         // STEP 2 - Generate a secret word
         static void GenerateSecret()
         {
-            secret = "Hello World";
+            secret = "Hello World".ToLower();
         }
 
         // STEP 3 - Build the initial revealed secret string
@@ -66,10 +66,32 @@ namespace Hangman
 
             //char letter = Console.ReadLine()[0];      // Alternative
 
-            // Add the letter to the list of guessed letters
-            previousGuessedLetters += letter + " ";
-
             return letter;
+        }
+
+        // STEP 6 - Process User Guessed Letter
+        static void ProcessUserGuess(char letter)
+        {
+            if (secret.Contains(letter) && !previousGuessedLetters.Contains(letter))
+            {
+                // OKAY
+                Console.WriteLine("Good guess.");
+
+
+                // Add the letter to the list of guessed letters
+                previousGuessedLetters += letter + " ";
+            }
+            else if (!previousGuessedLetters.Contains(letter))
+            {
+                Console.WriteLine("Sorry, wrong guess. Getting closer to the gallows.");
+
+                // Add the letter to the list of guessed letters
+                previousGuessedLetters += letter + " ";
+            }
+            else
+            {
+                Console.WriteLine("Sorry. Already tried that one.");
+            }
         }
 
         static void Main(string[] args)
@@ -87,6 +109,9 @@ namespace Hangman
             // STEP 4 - Get a guess from the user and save in variable
             char userGuess = RequestLetterFromUser();
             Console.WriteLine($"Your guess: {userGuess}");
+
+            // STEP 6 - Process the letter from the user
+            ProcessUserGuess(userGuess);
         }
     }
 }
