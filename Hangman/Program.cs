@@ -80,6 +80,24 @@ namespace Hangman
                 // OKAY
                 Console.WriteLine("Good guess.");
 
+                // Need to make a new revealed secret with guess + old guesses
+                string newRevealedSecret = "";
+                for (int i = 0; i < secret.Length; i++)
+                {
+                    if (secret[i] == letter)        // Found match
+                    {
+                        newRevealedSecret += $"{letter} ";
+                    }
+                    else if (previousGuessedLetters.Contains($"{secret[i]}"))
+                    {
+                        newRevealedSecret += $"{secret[i]} ";
+                    }
+                    else
+                    {
+                        newRevealedSecret += "_ ";
+                    }
+                }
+                revealedSecret = newRevealedSecret;
 
                 // Add the letter to the list of guessed letters
                 previousGuessedLetters += letter + " ";
@@ -118,6 +136,8 @@ namespace Hangman
 
             // STEP 6 - Process the letter from the user
             ProcessUserGuess(userGuess);
+
+            Console.WriteLine($"Current progress: {revealedSecret.Trim()}");
         }
     }
 }
