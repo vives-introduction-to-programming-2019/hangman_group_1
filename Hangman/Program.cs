@@ -28,7 +28,17 @@ namespace Hangman
         // STEP 2 - Generate a secret word
         static void GenerateSecret()
         {
-            secret = "Hello World".ToLower();
+            string[] possibleWords =
+            {
+                "hello world",
+                "ill be back",
+                "immutable"
+            };
+
+            Random generator = new Random();
+
+            int secretIndex = generator.Next(possibleWords.Length);
+            secret = possibleWords[secretIndex].ToLower();
         }
 
         // STEP 3 - Build the initial revealed secret string
