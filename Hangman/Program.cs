@@ -124,20 +124,35 @@ namespace Hangman
             GenerateSecret();   // STEP 2
             BuildInitialRevealedSecret();       // STEP 3
 
-            // Print revealed secret
-            Console.WriteLine($"Current progress: {revealedSecret.Trim()}");
+            do
+            {
+                // Print revealed secret
+                Console.WriteLine($"Current progress: {revealedSecret.Trim()}");
 
-            // STEP 5 - Show previous guesses
-            Console.WriteLine($"Previous guessed letters: {previousGuessedLetters.Trim()}");
+                // STEP 5 - Show previous guesses
+                Console.WriteLine($"Previous guessed letters: {previousGuessedLetters.Trim()}");
 
-            // STEP 4 - Get a guess from the user and save in variable
-            char userGuess = RequestLetterFromUser();
-            Console.WriteLine($"Your guess: {userGuess}");
+                // STEP 4 - Get a guess from the user and save in variable
+                char userGuess = RequestLetterFromUser();
+                Console.WriteLine($"Your guess: {userGuess}");
 
-            // STEP 6 - Process the letter from the user
-            ProcessUserGuess(userGuess);
+                // STEP 6 - Process the letter from the user
+                ProcessUserGuess(userGuess);
 
-            Console.WriteLine($"Current progress: {revealedSecret.Trim()}");
+                Console.WriteLine($"Current progress: {revealedSecret.Trim()}");
+            } while (numberOfWrongTriesLeft != 0 && revealedSecret.Contains("_"));
+
+            if (numberOfWrongTriesLeft != 0)
+            {
+                Console.WriteLine("You have won the game. Congratz.");
+            }
+            else
+            {
+                Console.WriteLine("Aah you lost from the best. Gallows for u");
+            }
+
+            Console.WriteLine("Thank you for playing Hangman");
+
         }
     }
 }
