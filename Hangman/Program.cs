@@ -28,12 +28,15 @@ namespace Hangman
         // STEP 2 - Generate a secret word
         static void GenerateSecret()
         {
-            string[] possibleWords =
-            {
-                "hello world",
-                "ill be back",
-                "immutable"
-            };
+            //string[] possibleWords =
+            //{
+            //    "hello world",
+            //    "ill be back",
+            //    "immutable"
+            //};
+
+            // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/file-system/how-to-read-from-a-text-file
+            string[] possibleWords = System.IO.File.ReadAllLines(@"words.txt");
 
             Random generator = new Random();
 
