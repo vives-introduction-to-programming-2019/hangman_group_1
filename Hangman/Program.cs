@@ -118,12 +118,8 @@ namespace Hangman
             }
         }
 
-        static void Main(string[] args)
+        static void GameLoop()
         {
-            WelcomeText();      // STEP 1
-            GenerateSecret();   // STEP 2
-            BuildInitialRevealedSecret();       // STEP 3
-
             do
             {
                 // Print revealed secret
@@ -141,6 +137,14 @@ namespace Hangman
 
                 Console.WriteLine($"Current progress: {revealedSecret.Trim()}");
             } while (numberOfWrongTriesLeft != 0 && revealedSecret.Contains("_"));
+        }
+
+        static void Main(string[] args)
+        {
+            WelcomeText();      // STEP 1
+            GenerateSecret();   // STEP 2
+            BuildInitialRevealedSecret();       // STEP 3
+            GameLoop();     // Loop the guessing
 
             if (numberOfWrongTriesLeft != 0)
             {
