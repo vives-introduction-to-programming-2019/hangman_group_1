@@ -147,8 +147,6 @@ namespace Hangman
 
                 // STEP 6 - Process the letter from the user
                 ProcessUserGuess(userGuess);
-
-                Console.WriteLine($"Current progress: {revealedSecret.Trim()}");
             } while (numberOfWrongTriesLeft != 0 && revealedSecret.Contains("_"));
         }
 
@@ -161,14 +159,15 @@ namespace Hangman
 
             if (numberOfWrongTriesLeft != 0)
             {
-                Console.WriteLine("You have won the game. Congratz.");
+                Console.WriteLine("\nYou have won the game. Congratz.");
             }
             else
             {
-                Console.WriteLine("Aah you lost from the best. Gallows for u");
+                Console.WriteLine("\nAah you lost from the best. Gallows for u");
+                Console.WriteLine($"The secret was {secret}");
             }
 
-            Console.WriteLine("Thank you for playing Hangman");
+            Console.WriteLine("\n\nThank you for playing Hangman");
 
         }
     }
